@@ -54,8 +54,9 @@ export default function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="cursor-pointer">
                 <Avatar>
-                  <AvatarImage src={"https://srizan.dev/pfp.webp"} alt="@srizan" />
-                  <AvatarFallback>SI</AvatarFallback>
+                  {/* TODO: Implement avatar system */}
+                  {/*<AvatarImage src={"https://srizan.dev/pfp.webp"} alt="@srizan" />*/}
+                  <AvatarFallback>{user.username}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
