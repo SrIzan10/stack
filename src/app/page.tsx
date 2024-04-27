@@ -87,14 +87,6 @@ export default function Home() {
                     </li>
                     <li>
                       <div className="grid gap-1">
-                          <h3 className="text-xl font-bold">Cloudflare Pages</h3>
-                          <p className="text-gray-500 dark:text-gray-400">
-                            Take advantage of the speed of Cloudflare to host your serverless websites.
-                          </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="grid gap-1">
                           <h3 className="text-xl font-bold">Lucia</h3>
                           <p className="text-gray-500 dark:text-gray-400">
                             Manage authentication with Lucia auth, the best selfhosted authentication library.
