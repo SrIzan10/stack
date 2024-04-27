@@ -10,11 +10,11 @@ Sr Izan Stack is a next.js template which runs on modern technologies, with a fo
 - UI Library: [shadcn/ui](https://ui.shadcn.com)
 - Authentication: [Lucia](https://lucia-auth.com)
 - Deployment: [Vercel](https://vercel.com)
-- Database: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) with [Prisma](https://www.prisma.io/)
+- Database: [Supabase Postgres](https://supabase.com) with [Prisma](https://www.prisma.io/)
 
 ## Why (insert tool here)?
 
-- **Next.js**: I like next.js app router because it has a very good developer experience and it's very easy to use.
+- **Next.js**: I like the next.js app router because it has a very good developer experience and it's very easy to use.
 - **TypeScript**: Don't even need to explain why
 - **Tailwind CSS**: I like the utility-first approach and the speed of development it provides
 - **shadcn/ui**: Copy-pasting components is so fire (also is Radix UI)
