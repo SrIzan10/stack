@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import prisma from "../db";
 import { Argon2id } from "oslo/password";
 import { generateId } from "lucia";
+import { accountSchema } from "./zod";
 
 export async function logout() {
     const { session } = await validateRequest();
@@ -16,25 +17,13 @@ export async function logout() {
 }
 
 export async function login(prev: any, data: FormData) {
-	const username = data.get("username");
-	if (
-		typeof username !== "string" ||
-		username.length < 3 ||
-		username.length > 31 ||
-		!/^[a-z0-9_-]+$/.test(username)
-	) {
+	const checkSchema = await accountSchema.safeParseAsync(Object.fromEntries(data.entries()))
+	if (!checkSchema.success)
 		return {
-			error: "Invalid username",
+			error: `From ${checkSchema.error.errors[0].path[0]}: ${checkSchema.error.errors[0].message}`,
 			success: false,
 		};
-	}
-	const password = data.get("password");
-	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
-		return {
-			error: "Invalid password",
-			success: false,
-		};
-	}
+	const { username, password } = checkSchema.data;
 
 	const existingUser = await prisma.user.findUnique({
         where: {
@@ -72,35 +61,13 @@ export async function login(prev: any, data: FormData) {
 }
 
 export async function signup(prev: any, formData: FormData): Promise<ActionResult> {
-	"use server";
-	const username = formData.get("username");
-    console.log(username)
-	// username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
-	// keep in mind some database (e.g. mysql) are case insensitive
-	if (
-		typeof username !== "string" ||
-		username.length < 3 ||
-		username.length > 31 ||
-		!/^[a-z0-9_-]+$/.test(username)
-	) {
+	const checkSchema = await accountSchema.safeParseAsync(Object.fromEntries(formData.entries()))
+	if (!checkSchema.success)
 		return {
-			error: "Invalid username",
+			error: `From ${checkSchema.error.errors[0].path[0]}: ${checkSchema.error.errors[0].message}`,
 			success: false,
 		};
-	}
-	if (await prisma.user.findUnique({ where: { username: username } })) {
-		return {
-			error: "Username is already taken",
-			success: false,
-		};
-	}
-	const password = formData.get("password");
-	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
-		return {
-			error: "Invalid password",
-			success: false,
-		};
-	}
+	const { username, password } = checkSchema.data;
 
 	const hashedPassword = await new Argon2id().hash(password);
 	const userId = generateId(15);

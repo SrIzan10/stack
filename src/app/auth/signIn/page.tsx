@@ -5,9 +5,16 @@ import Link from "next/link";
 import { useFormState } from "react-dom";
 import { login } from "@/lib/auth/actions";
 import SubmitButton from "@/components/app/SubmitButton/SubmitButton";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function Page() {
-	const [, formAction] = useFormState(login, null);
+	const [formData, formAction] = useFormState(login, null);
+  useEffect(() => {
+    if (formData?.error) {
+      toast.error(formData.error)
+    }
+  }, [formData])
 
   return (
     <div className="flex items-center p-4 lg:p-8">
