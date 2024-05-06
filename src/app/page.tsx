@@ -73,7 +73,7 @@ export default function Home() {
                       <div className="grid gap-1">
                         <h3 className="text-xl font-bold">shadcn/ui</h3>
                         <p className="text-gray-500 dark:text-gray-400">
-                          Develop your application with Vite, the next-generation frontend tooling.
+                          The customizability of the components makes it one of the best UI libraries out there.
                         </p>
                       </div>
                     </li>
