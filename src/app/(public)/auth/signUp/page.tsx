@@ -34,7 +34,7 @@ export default function Page() {
           <SubmitButton buttonText="Create account" className="w-full" />
           <div className="text-center text-sm">
             Already have an account?
-            <Link className="underline pl-1" href="/auth/signIn">
+            <Link className="underline pl-1" href="/auth/login">
               Login
             </Link>
           </div>
