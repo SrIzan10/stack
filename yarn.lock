@@ -2571,10 +2571,18 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
 
-oslo@1.2.0, oslo@^1.2.0:
+oslo@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/oslo/-/oslo-1.2.0.tgz#3d7e3132de725c4ec9ab738445e959bae99e5b2f"
   integrity sha512-OoFX6rDsNcOQVAD2gQD/z03u4vEjWZLzJtwkmgfRF+KpQUXwdgEXErD7zNhyowmHwHefP+PM9Pw13pgpHMRlzw==
+  dependencies:
+    "@node-rs/argon2" "1.7.0"
+    "@node-rs/bcrypt" "1.9.0"
+
+oslo@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/oslo/-/oslo-1.2.1.tgz#aa2b9729c2b9bae74248ba865e9904defe231474"
+  integrity sha512-HfIhB5ruTdQv0XX2XlncWQiJ5SIHZ7NHZhVyHth0CSZ/xzge00etRyYy/3wp/Dsu+PkxMC+6+B2lS/GcKoewkA==
   dependencies:
     "@node-rs/argon2" "1.7.0"
     "@node-rs/bcrypt" "1.9.0"
