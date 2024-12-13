@@ -4,9 +4,9 @@ import { cookies } from "next/headers";
 import { lucia, validateRequest } from ".";
 import { redirect } from "next/navigation";
 import prisma from "../db";
-import { Argon2id } from "oslo/password";
 import { generateId } from "lucia";
 import { accountSchema } from "./zod";
+import { hash, verify } from "@node-rs/argon2";
 
 export async function logout() {
     const { session } = await validateRequest();
@@ -46,7 +46,7 @@ export async function login(prev: any, data: FormData) {
 		};
 	}
 
-	const validPassword = await new Argon2id().verify(existingUser.hashed_password, password);
+	const validPassword = await verify(existingUser.hashed_password, password);
 	if (!validPassword) {
 		return {
 			error: "Incorrect username or password",
@@ -69,7 +69,7 @@ export async function signup(prev: any, formData: FormData): Promise<ActionResul
 		};
 	const { username, password } = checkSchema.data;
 
-	const hashedPassword = await new Argon2id().hash(password);
+	const hashedPassword = await hash(password);
 	const userId = generateId(15);
 
 	await prisma.user.create({
